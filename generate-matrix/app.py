@@ -21,10 +21,10 @@ class Service (object):
             n = int(content['n'])
             f = int(content['f'])
             for i in range(0, m):
-                m = requests.post (url='http://172.17./api/v1/determinante', json={'matrix': np.random.randint(10, size=(n,n)).tolist()})
+                m = requests.post (url='http://172.18.0.1:5001/api/v1/determinante', json={'matrix': np.random.randint(10, size=(n,n)).tolist()})
                 time.sleep(f)
             return jsonify(make_status(True))
             
             
 app = Service()
-app.server.run(debug=True, port=5000)
+app.server.run(debug=True,host=172.18.0.1, port=5000)

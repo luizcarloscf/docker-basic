@@ -30,4 +30,4 @@ class Service (object):
 
 
 app = Service()
-app.server.run(debug=True, host='0.0.0.0', port=5002)
+app.server.run(debug=True, host='172.17.0.1', port=5002)

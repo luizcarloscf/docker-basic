@@ -21,4 +21,4 @@ class Service (object):
             return jsonify(make_status(True)) 
 
 app = Service()
-app.server.run(debug=True, host='0.0.0.0', port=5001)
+app.server.run(debug=True,host='172.17.0.1', port=5001)
