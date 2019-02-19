@@ -1,5 +1,6 @@
 import socket
 import json
+import sys
 
 class Server(object):
     def __init__(self, host, port):
@@ -31,8 +32,10 @@ class Server(object):
         self.server.sendall(b)
         return 0
 
-server = Server(host='127.0.0.1', port=5000)
+server = Server(host='127.0.0.1', port=5003)
 
 while 1:
     args = server.connect()
-    print (server.receive_package(args[0], args[1]))
+    package = server.receive_package(args[0], args[1])
+    print (sys.getsizeof(package))
+
