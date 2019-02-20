@@ -4,7 +4,7 @@ import sys
 import numpy as np
 
 
-host = '127.0.0.1'
+host = '0.0.0.0'
 port_on = 5001
 port_to = 5003
 
@@ -39,6 +39,12 @@ class Server(object):
             s.close()
         pass
 
+def parse_cli(args):
+    return { "args": dict([arg.split('=', maxsplit=1) for arg in args[1:] ])}
+
+op = parse_cli(sys.argv[:])
+port_on = int (op['args']['port_on'])
+port_to = int (op['args']['port_to'])
 server = Server(host=host, port=port_on)
 
 while 1:

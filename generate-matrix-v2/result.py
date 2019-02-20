@@ -28,8 +28,13 @@ class Server(object):
         conn.close()
         return data
     
+def parse_cli(args):
+    return { "args": dict([arg.split('=', maxsplit=1) for arg in args[1:] ])}
 
-server = Server(host='127.0.0.1', port=5003)
+op = parse_cli(sys.argv[:])
+port = int (op['args']['port'])
+
+server = Server(host='0.0.0.0', port=port)
 package = dict()
 
 while 1:

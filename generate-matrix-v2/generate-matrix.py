@@ -9,7 +9,7 @@ def parse_cli(args):
     return { "args": dict([arg.split('=', maxsplit=1) for arg in args[1:] ])}
 
 
-HOST = '127.0.0.1' 
+HOST = '0.0.0.0' 
 PORT = 5001
 
 op = parse_cli(sys.argv[:])
@@ -17,6 +17,7 @@ op = parse_cli(sys.argv[:])
 m = int(op['args']['m'])
 n = int(op['args']['n'])
 f = float(op['args']['f'])
+PORT = int (op['args']['port'])
 
 print (op)
 
