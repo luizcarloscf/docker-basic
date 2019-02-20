@@ -1,22 +1,27 @@
 import socket
 import json
 import sys
+import numpy as np
+
+
+host = '127.0.0.1'
+port_on = 5001
+port_to = 5003
+
 class Server(object):
     def __init__(self, host, port):
         self.host = host
         self.port = port
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.bind((self.host, self.port))
-        
+        print (f'Listening on: {self.host}:{self.port}')
+        self.server.listen()
 
     def connect(self):
-        print ('Listening on...')
-        self.server.listen()
         conn, addr = self.server.accept()
         return (conn, addr)
 
     def receive_package(self, conn, addr):
-        print('Connected by', addr)
         b = b''
         while 1:
             tmp = conn.recv(1024)
@@ -34,10 +39,11 @@ class Server(object):
             s.close()
         pass
 
-server = Server(host='127.0.0.1', port=5001)
+server = Server(host=host, port=port_on)
 
 while 1:
     args = server.connect()
     package = server.receive_package(args[0], args[1])
-    print (sys.getsizeof(package))
-    server.send_package(host='127.0.0.1', port=5003, data=package)
+    package['det'] = np.linalg.det(np.linalg.inv(package['matrix']))
+    print ('Received package and sending to ' + host + ':' + str(port_to))
+    server.send_package(host=host, port=port_to, data=package)

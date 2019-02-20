@@ -22,10 +22,12 @@ print (op)
 
 for i in range(0, m):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        print ('Sending matrix to '+ str(HOST) + ' on port:' + str(PORT))
         s.connect((HOST, PORT))
-        data = np.random.randint(10, size=(n,n)).tolist()
+        data = dict()
+        data['matrix'] = np.random.random_sample((n,n)).tolist()
+        data['initial-time'] = time.time()
         b = json.dumps(data).encode('utf-8')
         s.sendall(b)
-        print (sys.getsizeof(data))
     time.sleep(1/f)
 
