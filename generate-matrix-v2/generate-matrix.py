@@ -9,7 +9,7 @@ def parse_cli(args):
     return { "args": dict([arg.split('=', maxsplit=1) for arg in args[1:] ])}
 
 
-HOST = '0.0.0.0' 
+HOST = 'forward-det' 
 PORT = 5001
 
 op = parse_cli(sys.argv[:])

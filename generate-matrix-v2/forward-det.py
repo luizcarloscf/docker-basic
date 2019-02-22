@@ -52,4 +52,4 @@ while 1:
     package = server.receive_package(args[0], args[1])
     package['det'] = np.linalg.det(np.linalg.inv(package['matrix']))
     print ('Received package and sending to ' + host + ':' + str(port_to))
-    server.send_package(host=host, port=port_to, data=package)
+    server.send_package(host='result', port=port_to, data=package)
