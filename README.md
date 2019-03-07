@@ -1,4 +1,13 @@
 # Docker Basics
+Building application with 3 services: A, B and C.
+
+A: Generates M square matrices of order N of random numbers. The matrices should be generated at a rate of F matrices per second. Sends the results to B.
+
+B: Inverts the input matrix and calculates determinant. Sends the results to C.
+
+C: Receives the value of the determinant and shows on the screen.
+
+Each service must run in a different container.
 ## Installation
 First of all you need to install docker. Go to [Oficial page](https://docs.docker.com/cs-engine/1.13/) for more details about installation.
 
