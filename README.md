@@ -28,12 +28,12 @@ docker network create my-net
 ## Containers
 Run the container that shows the results.
 ```bash
-docker run --network=my-net servers-socket python3 result.py port=80
+docker run --network=my-net --name=result servers-socket python3 result.py port=80
 ```
 Run the container that calculate the determinant and forward the messages.
 ```bash
-docker run -d --network=my-net servers-socket python3 forward-det.py port_on=80 port_to=80
+docker run -d --network=my-net --name=forward-det servers-socket python3 forward-det.py port_on=80 port_to=80
 ```
 Run the container that generate the matrix.
 ```bash
-docker run --network=my-net servers-socket python3 generate-matrix.py port=80 m=1 n=10 f=2
+docker run --network=my-net --name=generate-matrix servers-socket python3 generate-matrix.py port=80 m=1 n=10 f=2
