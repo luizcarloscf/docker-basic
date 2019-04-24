@@ -10,7 +10,7 @@ class Server(object):
         self.port = port
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.bind((self.host, self.port))
-        logging.info((f'Listening on: {self.host}:{self.port}')) 
+        logging.info('Listening on:' + str(self.host) + ":" + str(self.port)) 
         self.server.listen()
 
     def connect(self):
