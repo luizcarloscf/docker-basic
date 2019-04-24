@@ -32,6 +32,9 @@ class Server(object):
 def parse_cli(args):
     return { "args": dict([arg.split('=', maxsplit=1) for arg in args[1:] ])}
 
+logging.basicConfig(level=logging.INFO,
+                    format='[%(levelname)s][%(asctime)s] %(message)s')
+
 op = parse_cli(sys.argv[:])
 port = int (op['args']['port'])
 
@@ -41,7 +44,7 @@ package = dict()
 while 1:
     args = server.connect()
     package = server.receive_package(args[0], args[1])
-    print ('-------------Received matrix------------')
+    logging.info ('-------------Received matrix------------')
     if 'det' in package:
         logging.info ('Determinant: ' + str(package['det']))
         logging.info (print ('Time interval: ' + str(package['final-time']-package['initial-time'])))

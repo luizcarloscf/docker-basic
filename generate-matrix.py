@@ -3,7 +3,10 @@ import json
 import numpy as np
 import sys
 import time
+import logging
 
+logging.basicConfig(level=logging.INFO,
+                    format='[%(levelname)s][%(asctime)s] %(message)s')
 
 def parse_cli(args):
     return { "args": dict([arg.split('=', maxsplit=1) for arg in args[1:] ])}
@@ -23,7 +26,7 @@ print (op)
 
 for i in range(0, m):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        print ('Sending matrix to '+ str(HOST) + ' on port:' + str(PORT))
+        logging.info('Sending matrix to '+ str(HOST) + ' on port:' + str(PORT))
         s.connect((HOST, PORT))
         data = dict()
         data['matrix'] = np.random.random_sample((n,n)).tolist()
