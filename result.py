@@ -2,6 +2,7 @@ import socket
 import json
 import sys
 import time
+import logging
 
 class Server(object):
     def __init__(self, host, port):
@@ -9,7 +10,7 @@ class Server(object):
         self.port = port
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.bind((self.host, self.port))
-        print (f'Listening on: {self.host}:{self.port}')
+        logging.info((f'Listening on: {self.host}:{self.port}')) 
         self.server.listen()
 
     def connect(self):
@@ -42,8 +43,8 @@ while 1:
     package = server.receive_package(args[0], args[1])
     print ('-------------Received matrix------------')
     if 'det' in package:
-        print ('Determinant: ' + str(package['det']))
-        print ('Time interval: ' + str(package['final-time']-package['initial-time']))
+        logging.info ('Determinant: ' + str(package['det']))
+        logging.info (print ('Time interval: ' + str(package['final-time']-package['initial-time'])))
 
 
 
